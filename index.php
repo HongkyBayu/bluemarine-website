@@ -73,6 +73,9 @@ include "admin/connectiondb.php";
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Find Us</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contactUs">Contact</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -174,7 +177,7 @@ include "admin/connectiondb.php";
         </div>
       </div>
     </section>
-    <!-- Contact -->
+    <!-- Find Us -->
     <section id="contact" style="padding:50px;">
       <div class="container">
         <div class="row">
@@ -206,6 +209,29 @@ include "admin/connectiondb.php";
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI5EYRVvOhYbsx3psaNatc4NpwoOHbrz4&callback=initMap">
             </script>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section id="contactUs" class="py-5">
+      <div class="container">
+        <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="section-heading text-uppercase">Contact Us</h3>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="col-md-6 col-md-offset-6">
+          <form>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2" required>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Submit</button>
+              </div>
+            </div>
+          <form>
+          </div>
+          <div class="col-md-3"></div>
         </div>
       </div>
     </section>
