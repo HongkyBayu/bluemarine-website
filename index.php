@@ -7,6 +7,7 @@ include "admin/connectiondb.php";
 
   <head>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
   <script>
 
     function validateEmail(email) {
@@ -20,12 +21,20 @@ include "admin/connectiondb.php";
       if(userEmailField === "") {
         swal("Error!", "You need to fill your email!", "error");
       } else if (validateEmail(userEmailField)){
-        swal("Success!", "Your email has been saved!", "success");
+        $.ajax({
+            type: "POST",
+            url: "insert.php",
+            data: "email=" + userEmailField,
+            success: function(data) {
+              swal("Success!", "Your email has been saved!", "success");
+              document.getElementById("contactUsForm").reset();
+            }
+        });
       } else {
         swal("Error!", "Please fill with valid email address!", "warning");
       }
     }
-    
+
   </script>
   <style>
       #map {
@@ -243,14 +252,14 @@ include "admin/connectiondb.php";
           </div>
           <div class="col-md-3"></div>
           <div class="col-md-6 col-md-offset-6">
-          <form>
-            <div class="input-group mb-3">
-              <input id="userEmail" type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" onclick="submitContact()" type="submit">Submit</button>
+            <form id="contactUsForm" method="post">
+              <div class="input-group mb-3">
+                <input id="userEmail" name="emailUser" type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button name="submitEmail" class="btn btn-outline-secondary" onclick="submitContact()" type="button">Submit</button>
+                </div>
               </div>
-            </div>
-          <form>
+            <form>
           </div>
           <div class="col-md-3"></div>
         </div>
