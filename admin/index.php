@@ -7,6 +7,14 @@ include 'sidebar.php';
         location.href = "www.yoursite.com";
     };
 </script>
+<!-- DataTables -->
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#contactTable').DataTable()
+  })
+</script>
 
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -192,6 +200,52 @@ $result = $conn->query($sql);
                   ?>
                   <td><button type='button' class='btn btn-block btn-primary btn-xs'
                   onclick="document.location.href='editService.php?id=<?php echo $row["listservice_id"];?>&serviceid=3'">Edit</button></td></tr>
+                  <?php
+              }
+          } else {
+              echo "0 results";
+          }
+          $conn->close();
+                ?>
+        </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        </div>
+
+        <!-- /.col -->
+        <div class="row">
+        <div class="col-md-12">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Contact List</h3>
+            </div>
+<?php
+include 'connectiondb.php';
+$sql = "SELECT subs_email FROM subscriber_content";
+$result = $conn->query($sql);
+?>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table id="contactTable" class="table table-bordered">
+                <?php
+                if ($result->num_rows > 0) {
+                  $number = 1;
+                  echo "<tr>
+                  <th style='width: 10px'>#</th>
+                  <th>Contact Email</th>
+                </tr>";
+          
+          while($row = $result->fetch_assoc()) {
+                  echo "<tr>
+                  <td>"; echo $number;
+                  $number++; "</td>"; 
+                  echo "<td>".$row["subs_email"]."</td>";
+                  ?>
+                  </tr>
                   <?php
               }
           } else {
