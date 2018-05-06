@@ -6,6 +6,27 @@ include "admin/connectiondb.php";
 <html lang="en">
 
   <head>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+
+    function validateEmail(email) {
+      var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    function submitContact() {
+      var userEmailField = document.getElementById("userEmail").value;
+
+      if(userEmailField === "") {
+        swal("Error!", "You need to fill your email!", "error");
+      } else if (validateEmail(userEmailField)){
+        swal("Success!", "Your email has been saved!", "success");
+      } else {
+        swal("Error!", "Please fill with valid email address!", "warning");
+      }
+    }
+    
+  </script>
   <style>
       #map {
         height: 400px;
@@ -224,9 +245,9 @@ include "admin/connectiondb.php";
           <div class="col-md-6 col-md-offset-6">
           <form>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2" required>
+              <input id="userEmail" type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                <button class="btn btn-outline-secondary" onclick="submitContact()" type="submit">Submit</button>
               </div>
             </div>
           <form>
